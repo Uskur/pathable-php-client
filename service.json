@@ -1,0 +1,407 @@
+{
+	"name": "Pathable",
+	"apiVersion": "v1.0",
+	"baseUrl": "https://api.pathable.com/v1/communities/",
+	"description": "Pathable",
+	"operations": {
+		"GetFoo": {
+			"httpMethod": "GET",
+			"uri": "/foo",
+			"summary": "Gets foo",
+			"responseModel": "FooResponse"
+		},
+		"CreateFoo": {
+			"httpMethod": "POST",
+			"uri": "/foo",
+			"summary": "Creates new foo",
+			"responseModel": "FooResponse",
+			"parameters": {
+				"name": {
+					"location": "json",
+					"type": "string",
+					"required": true
+				},
+				"description": {
+					"location": "json",
+					"type": "string",
+					"required": true
+				}
+			}
+		},
+		"CreateUser": {
+			"httpMethod": "POST",
+			"uri": "users",
+			"summary": "Creates new user",
+			"responseModel": "User",
+			"parameters": {
+				"allowed_mails": {
+					"type": "string",
+					"description": "Specify which types of mail the user can receive. Valid options are: reset_password, custom, private_notices, public_notices, daily_update, and system. If set to an empty array, no mail will be sent. reset_password, custom, private_notices, daily_update",
+					"location":"json",
+					"required": true
+				},
+				"allowed_sms": {
+					"type": "string",
+					"description": "bulletin_notices",
+					"location":"json",
+					"required": true
+				},
+				"bio": {
+					"type": "string",
+					"description": "A bio written in markdown.",
+					"location":"json",
+					"required": true
+				},
+				"credentials": {
+					"type": "string",
+					"description": "Professional credentials, e.g. PhD or LMP.",
+					"location":"json",
+					"required": true
+				},
+				"enabled_for_email": {
+					"type": "boolean",
+					"description": "?",
+					"location":"json",
+					"required": true
+				},
+				"enabled_for_sms": {
+					"type": "boolean",
+					"description": "?",
+					"location":"json",
+					"required": true
+				},
+				"evaluator_id": {
+					"type": "string",
+					"description": "A customer defined string which will be appending to session evaluation URLs.",
+					"location":"json",
+					"required": true
+				},
+				"event_external_id": {
+					"type": "string",
+					"description": "An identifier that is unique for that user for the particular event or site",
+					"location":"json",
+					"required": true
+				},
+				"master_external_id": {
+					"type": "string",
+					"description": "An identifier that is unique for that user for the particular event or site",
+					"location":"json"
+				},
+				"first_name": {
+					"type": "string",
+					"description": "Can include a middle name or initial.",
+					"location":"json",
+					"required": true
+				},
+				"last_name": {
+					"type": "string",
+					"description": "Or surname.",
+					"location":"json",
+					"required": true
+				}
+			}
+		},
+		"GetUser": {
+			"httpMethod": "GET",
+			"uri": "users/{id}",
+			"summary": "Get user",
+			"responseModel": "User",
+			"parameters": {
+				"id": {
+					"type": "string",
+					"description": "Id of a user.",
+					"location":"uri",
+					"required": true
+				}
+			}
+		},
+		"SearchUser": {
+			"httpMethod": "GET",
+			"uri": "users",
+			"summary": "Search user",
+			"responseModel": "User",
+			"parameters": {
+				"query": {
+					"type": "string",
+					"description": "will match across the following fields: first_name, last_name, title, bio, organization_name, primary_email, <groups names>, and <ribbon names>",
+					"location":"json"
+				},
+				"with": {
+					"type": "array",
+					"description": "with can be used for all valid user attributes",
+					"location":"json"
+				},
+				"page": {
+					"type": "integer",
+					"description": "page number",
+					"location":"json"
+				},
+				"per_page": {
+					"type": "integer",
+					"description": "results per page",
+					"location":"json"
+				},
+				"order": {
+					"type": "string",
+					"description": "field to order by",
+					"location":"json"
+				},
+				"sort_mode": {
+					"type": "string",
+					"description": "asc/desc sort mode",
+					"location":"json"
+				}
+			}
+		},
+		"CreateMeeting": {
+			"httpMethod": "POST",
+			"uri": "meetings",
+			"summary": "Creates new meeting",
+			"responseModel": "User",
+			"parameters": {
+				"external_id": {
+					"type": "string",
+					"description": "If you are using a unique number to keep track of each session in a system outside of Pathable, you may enter those session numbers in this field. This field is NOT mandatory and may be left blank.",
+					"location":"json",
+					"required": false
+				},
+				"name": {
+					"type": "string",
+					"description": "Full name of the session.",
+					"location":"json",
+					"required": true
+				},
+				"starts_at": {
+					"type": "string",
+					"description": "The starting date and time of the session. This information MUST be entered in this format: MM/DD/YY HH:MM AM/PM (example: 12/23/2013 4:15 PM) Note the space between the time and the AM/PM designation.",
+					"location":"json",
+					"required": false
+				},
+				"ends_at": {
+					"type": "string",
+					"description": "The ending date and time of the session. This information MUST be entered in this format: MM/DD/YY HH:MM AM/PM (example: 12/23/2013 4:15 PM) Note the space between the time and the AM/PM designation.",
+					"location":"json",
+					"required": false
+				},
+				"speaker_emails": {
+					"type": "string",
+					"description": "The email addresses of this session's speakers, separated by spaces. We do not expose your speakers' email addresses in the community, our system simply uses this information to attach the speakers' profile to the sessions at which they're speaking.",
+					"location":"json",
+					"required": false
+				},
+				"location_name": {
+					"type": "string",
+					"description": "The room or name of the location where this session is taking place.",
+					"location":"json",
+					"required": false
+				},
+				"track_name": {
+					"type": "string",
+					"description": "you may enter your sessions' track name here. Tracks are used to group common sessions together. You might have an 'iPhone Development' track that would include all sessions pertaining to iPhone development. Attendees can filter by track to find all sessions that fall within that topic. Tracks are not mandatory and you may leave this cell blank.",
+					"location":"json",
+					"required": false
+				},
+				"keywords": {
+					"type": "string",
+					"description": "Keywords associated with this session. Keywords are much like tags and appear in the 'search' area of the schedule page; they can be used to filter the schedule. This provides an additional layer of labeling and filtering. Keywords are not mandatory and you may leave this cell blank.",
+					"location":"json",
+					"required": false
+				},
+				"blurb": {
+					"type": "string",
+					"description": "An identifier that is unique for that user for the particular event or site",
+					"location":"json",
+					"required": false
+				},
+				"document_list": {
+					"type": "string",
+					"description": "If you have materials that should be uploaded to this session's page and they are hosted online, you may enter the URL of the document(s). The documents will be uploaded to the session and attendees will have access to the materials when visiting this session's page.",
+					"location":"json"
+				},
+				"link_list": {
+					"type": "string",
+					"description": "Any websites that should be linked to on this session's page. Separate each URL with a comma.",
+					"location":"json",
+					"required": false
+				},
+				"mandatory": {
+					"type": "boolean",
+					"description": "Marking true in this column will place this session on every attendee's personal schedule and they will not be able to remove it. true is the only valid entry in this cell; leave it blank for false.",
+					"location":"json",
+					"required": false
+				},
+				"unschedulable": {
+					"type": "boolean",
+					"description": "Marking true in this cell will hide the 'attend' and 'join meeting' buttons on this session, preventing attendees from adding it to their personal schedule. Use this setting for any agenda items you'd like to note in the Full Schedule but wouldn't want an attendee to add to their personal schedule. This is most often used for entries such as, 'Registration Open 8am'",
+					"location":"json",
+					"required": false
+				},
+				"accepted_attendees_emails": {
+					"type": "string",
+					"description": "If you have attendees that are already signed up for this session, enter their email addresses here separated by a comma. We'll pre-populate the session on their personal schedule",
+					"location":"json",
+					"required": false
+				}
+			}
+		},
+		"SearchMeeting": {
+			"httpMethod": "GET",
+			"uri": "meetings",
+			"summary": "Search meeting",
+			"responseModel": "User",
+			"parameters": {
+				"query": {
+					"type": "string",
+					"description": "query will match across all the following fields: name, and blurb",
+					"location":"json"
+				},
+				"with": {
+					"type": "array",
+					"description": "with can be used for all valid user attributes",
+					"location":"json"
+				},
+				"page": {
+					"type": "integer",
+					"description": "page number",
+					"location":"json"
+				},
+				"per_page": {
+					"type": "integer",
+					"description": "results per page",
+					"location":"json"
+				},
+				"order": {
+					"type": "string",
+					"description": "field to order by",
+					"location":"json"
+				},
+				"sort_mode": {
+					"type": "string",
+					"description": "asc/desc sort mode",
+					"location":"json"
+				}
+			}
+		},
+		"AddMeetingMembership": {
+			"httpMethod": "POST",
+			"uri": "meetings/{meeting_id}/memberships",
+			"summary": "Add meeting membership",
+			"responseModel": "User",
+			"parameters": {
+				"user_id": {
+					"type": "string",
+					"description": "The user id to associate with the meeting",
+					"location":"json",
+					"required": true
+				},
+				"meeting_id": {
+					"type": "string",
+					"description": "The meetings id",
+					"location":"uri",
+					"required": true
+				}
+			}
+		}
+	},
+	"models": {
+		"BaseResponse": {
+			"type": "object",
+			"properties": {
+				"success": {
+					"type": "string",
+					"required": true
+				},
+				"errors": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"code": {
+								"type": "string",
+								"description": "The error code."
+							},
+							"message": {
+								"type": "string",
+								"description": "The detailed message from the server."
+							}
+						}
+					}
+				}
+			},
+			"additionalProperties": {
+				"location": "json"
+			}
+		},
+		"User": {
+			"type": "object",
+			"properties": {
+				"allowed_mails": {
+					"type": "string",
+					"description": "Specify which types of mail the user can receive. Valid options are: reset_password, custom, private_notices, public_notices, daily_update, and system. If set to an empty array, no mail will be sent. reset_password, custom, private_notices, daily_update"
+				},
+				"allowed_sms": {
+					"type": "string",
+					"description": "bulletin_notices"
+				},
+				"bio": {
+					"type": "string",
+					"description": "A bio written in markdown."
+				},
+				"credentials": {
+					"type": "string",
+					"description": "Professional credentials, e.g. PhD or LMP."
+				},
+				"enabled_for_email": {
+					"type": "boolean",
+					"description": "?"
+				},
+				"enabled_for_sms": {
+					"type": "boolean",
+					"description": "?"
+				},
+				"evaluator_id": {
+					"type": "boolean",
+					"description": "A customer defined string which will be appending to session evaluation URLs."
+				},
+				"event_external_id": {
+					"type": "string",
+					"description": "An identifier that is unique for that user for the particular event or site"
+				},
+				"first_name": {
+					"type": "string",
+					"description": "Can include a middle name or initial."
+				},
+				"last_name": {
+					"type": "string",
+					"description": "Or surname."
+				}
+			},
+			"additionalProperties": {
+				"location": "json"
+			}
+		},
+		"FooResponse": {
+			"type": "object",
+			"extends": "BaseResponse",
+			"properties": {
+				"Foo": {
+					"type": "object",
+					"properties": {
+						"id": {
+							"type": "string",
+							"required": true
+						},
+						"name": {
+							"type": "string",
+							"required": true
+						},
+						"description": {
+							"type": "string",
+							"required": true
+						}
+					}
+				}
+			}
+		}
+	}
+}
