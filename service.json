@@ -4,30 +4,6 @@
 	"baseUrl": "https://api.pathable.com/v1/communities/",
 	"description": "Pathable",
 	"operations": {
-		"GetFoo": {
-			"httpMethod": "GET",
-			"uri": "/foo",
-			"summary": "Gets foo",
-			"responseModel": "FooResponse"
-		},
-		"CreateFoo": {
-			"httpMethod": "POST",
-			"uri": "/foo",
-			"summary": "Creates new foo",
-			"responseModel": "FooResponse",
-			"parameters": {
-				"name": {
-					"location": "json",
-					"type": "string",
-					"required": true
-				},
-				"description": {
-					"location": "json",
-					"type": "string",
-					"required": true
-				}
-			}
-		},
 		"CreateUser": {
 			"httpMethod": "POST",
 			"uri": "users",
@@ -334,6 +310,7 @@
 		},
 		"User": {
 			"type": "object",
+			"extends": "BaseResponse",
 			"properties": {
 				"allowed_mails": {
 					"type": "string",
@@ -378,29 +355,6 @@
 			},
 			"additionalProperties": {
 				"location": "json"
-			}
-		},
-		"FooResponse": {
-			"type": "object",
-			"extends": "BaseResponse",
-			"properties": {
-				"Foo": {
-					"type": "object",
-					"properties": {
-						"id": {
-							"type": "string",
-							"required": true
-						},
-						"name": {
-							"type": "string",
-							"required": true
-						},
-						"description": {
-							"type": "string",
-							"required": true
-						}
-					}
-				}
 			}
 		}
 	}
