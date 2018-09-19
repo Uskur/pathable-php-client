@@ -277,6 +277,58 @@
 					"required": true
 				}
 			}
+		},
+		"AnswerQuestion": {
+			"httpMethod": "POST",
+			"uri": "users/{user_id}/answers",
+			"summary": "Add meeting membership",
+			"responseModel": "User",
+			"parameters": {
+				"user_id": {
+					"type": "string",
+					"description": "The user id",
+					"location":"uri",
+					"required": true
+				},
+				"question_id": {
+					"type": "string",
+					"description": "The question id",
+					"location":"json",
+					"required": true
+				},
+				"answer": {
+					"type": "string",
+					"description": "The answer",
+					"location":"json",
+					"required": true
+				}
+			}
+		},
+		"UpdateQuestion": {
+			"httpMethod": "POST",
+			"uri": "users/{user_id}/answers/{answer_id}",
+			"summary": "Add meeting membership",
+			"responseModel": "User",
+			"parameters": {
+				"user_id": {
+					"type": "string",
+					"description": "The user id",
+					"location":"uri",
+					"required": true
+				},
+				"answer_id": {
+					"type": "string",
+					"description": "The answer id",
+					"location":"uri",
+					"required": true
+				},
+				"answer": {
+					"type": "string",
+					"description": "The answer",
+					"location":"json",
+					"required": true
+				}
+			}
 		}
 	},
 	"models": {

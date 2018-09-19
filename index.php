@@ -5,6 +5,8 @@
 	<li><a href="?action=createMeeting">Create Meeting</a></li>
 	<li><a href="?action=searchMeeting">Search Meeting</a></li>
 	<li><a href="?action=addMeetingMembership">Add Meeting Membership</a></li>
+	<li><a href="?action=answerQuestion">Answer Question</a></li>
+	<li><a href="?action=updateQuestion">Update Question</a></li>
 </ul>
 <pre>
 <?php
@@ -37,7 +39,7 @@ if($action == 'create') {
     ]);
 }
 elseif($action == 'get') {
-    $response = $pathable->GetUser(['id'=>'1387235']);
+    $response = $pathable->GetUser(['id'=>'1393452']);
 }elseif($action == 'search') {
     $response = $pathable->SearchUser(['query'=>'John']);
 }
@@ -57,6 +59,21 @@ elseif($action == 'addMeetingMembership') {
     $response = $pathable->AddMeetingMembership([
         'meeting_id' => '897181',
         'user_id' => '1387235'
+    ]);
+}
+elseif($action == 'answerQuestion') {
+    $response = $pathable->AnswerQuestion([
+        'question_id' => '4937',
+        'user_id' => '1393452',
+        'answer' => 'Canada, United States'
+    ]);
+}
+elseif($action == 'updateQuestion') {
+    $response = $pathable->UpdateQuestion([
+        'question_id' => '4937',
+        'answer_id' => '1596727',
+        'user_id' => '1393452',
+        'answer' => 'Canada, United States'
     ]);
 }
 print_r($response);
