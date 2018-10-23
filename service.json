@@ -129,6 +129,203 @@
 				}
 			}
 		},
+		"UpdateaUser": {
+			"httpMethod": "POST",
+			"uri": "users/{user_id}",
+			"summary": "Updates existing user",
+			"responseModel": "User",
+			"parameters": {
+				"user_id": {
+					"type": "string",
+					"description": "Id of a user to be updated",
+					"location":"json",
+					"required": true
+				},
+				"allowed_mails": {
+					"type": "string",
+					"description": "Specify which types of mail the user can receive. Valid options are: reset_password, custom, private_notices, public_notices, daily_update, and system. If set to an empty array, no mail will be sent. reset_password, custom, private_notices, daily_update",
+					"location":"json"
+				},
+				"allowed_sms": {
+					"type": "string",
+					"description": "bulletin_notices",
+					"location":"json"
+				},
+				"bio": {
+					"type": "string",
+					"description": "A bio written in markdown.",
+					"location":"json"
+				},
+				"credentials": {
+					"type": "string",
+					"description": "Professional credentials, e.g. PhD or LMP.",
+					"location":"json"
+				},
+				"enabled_for_email": {
+					"type": "boolean",
+					"description": "?",
+					"location":"json"
+				},
+				"enabled_for_sms": {
+					"type": "boolean",
+					"description": "Accepts sms notifications from system",
+					"location":"json"
+				},
+				"evaluator_id": {
+					"type": "string",
+					"description": "A customer defined string which will be appending to session evaluation URLs.",
+					"location":"json"
+				},
+				"event_external_id": {
+					"type": "string",
+					"description": "An identifier that is unique for that user for the particular event or site",
+					"location":"json"
+				},
+				"master_external_id": {
+					"type": "string",
+					"description": "An identifier that is unique for that user for the particular event or site",
+					"location":"json"
+				},
+				"first_name": {
+					"type": "string",
+					"description": "Can include a middle name or initial.",
+					"location":"json"
+				},
+				"last_name": {
+					"type": "string",
+					"description": "surname.",
+					"location":"json"
+				}
+				
+			}
+		},
+		"AnswerQuestion": {
+			"httpMethod": "POST",
+			"uri": "users/{user_id}/answers",
+			"summary": "Add meeting membership",
+			"responseModel": "User",
+			"parameters": {
+				"user_id": {
+					"type": "string",
+					"description": "The user id",
+					"location":"uri",
+					"required": true
+				},
+				"question_id": {
+					"type": "string",
+					"description": "The question id",
+					"location":"json",
+					"required": true
+				},
+				"answer": {
+					"type": "string",
+					"description": "The answer",
+					"location":"json",
+					"required": true
+				}
+			}
+		},
+		"UpdateQuestion": {
+			"httpMethod": "PUT",
+			"uri": "users/{user_id}/answers/{answer_id}",
+			"summary": "Add meeting membership",
+			"responseModel": "User",
+			"parameters": {
+				"user_id": {
+					"type": "string",
+					"description": "The user id",
+					"location":"uri",
+					"required": true
+				},
+				"answer_id": {
+					"type": "string",
+					"description": "The answer id",
+					"location":"uri",
+					"required": true
+				},
+				"answer": {
+					"type": "string",
+					"description": "The answer",
+					"location":"json",
+					"required": true
+				}
+			}
+		},
+		"AssociateUserWithaRibbon": {
+			"httpMethod": "POST",
+			"uri": "users/{user_id}/ribbon",
+			"summary": "Associate user with a ribbons",
+			"responseModel": "User",
+			"parameters": {
+				"user_id": {
+					"type": "integer",
+					"description": "Id of a user.",
+					"location":"json",
+					"required": true
+				},
+				"ribbons": {
+					"type": "string",
+					"description": "Id of a ribon.",
+					"location":"json",
+					"required": true
+				}
+			}
+		},
+		"DisassociateUserWithaRibbon": {
+			"httpMethod": "DELETE",
+			"uri": "users/{user_id}/ribbons/{ribbon_id}",
+			"summary": "Associate user with a ribbons",
+			"responseModel": "User",
+			"parameters": {
+				"user_id": {
+					"type": "integer",
+					"description": "Id of a user.",
+					"location":"json",
+					"required": true
+				},
+				"ribbon_id": {
+					"type": "integer",
+					"description": "Id of a ribon.",
+					"location":"json",
+					"required": true
+				}
+			}
+		},
+		"GetMeeting": {
+			"httpMethod": "GET",
+			"uri": "meetings",
+			"summary": "Retrieve existing meeting information",
+			"responseModel": "User",
+			"parameters": {
+				"name": {
+					"type": "string",
+					"description": "The meeting name.",
+					"location":"json",
+					"required": true
+				},
+				"description": {
+					"type": "string",
+					"description": "The meeting description.",
+					"location":"json",
+					"required": true
+				}
+			}
+		},
+		"RemoveaMeeting": {
+			"httpMethod": "DELETE",
+			"uri": "meetings/{id}",
+			"summary": "Delete existing meeting",
+			"responseModel": "User",
+			"parameters": {	
+				"id": {
+					"type": "string",
+					"description": "The meeting id to be permanently deleted.",
+					"location":"uri",
+					"required": true
+				}
+   
+			}
+		},
 		"CreateMeeting": {
 			"httpMethod": "POST",
 			"uri": "meetings",
@@ -147,15 +344,21 @@
 					"location":"json",
 					"required": true
 				},
-				"starts_at": {
+				"date": {
 					"type": "string",
-					"description": "The starting date and time of the session. This information MUST be entered in this format: MM/DD/YY HH:MM AM/PM (example: 12/23/2013 4:15 PM) Note the space between the time and the AM/PM designation.",
+					"description": "The starting time of the session. This information MUST be entered in this format:YYY-MM-DD (example: 2018-11-25)",
 					"location":"json",
 					"required": false
 				},
-				"ends_at": {
+				"start_time": {
 					"type": "string",
-					"description": "The ending date and time of the session. This information MUST be entered in this format: MM/DD/YY HH:MM AM/PM (example: 12/23/2013 4:15 PM) Note the space between the time and the AM/PM designation.",
+					"description": "The starting time of the session. This information MUST be entered in this format:HH:MM AM/PM (example: 1:15 PM) Note the space between the time and the AM/PM designation.",
+					"location":"json",
+					"required": false
+				},
+				"end_time": {
+					"type": "string",
+					"description": "The end time of the session. This information MUST be entered in this format:HH:MM AM/PM (example: 6:15 PM) Note the space between the time and the AM/PM designation.",
 					"location":"json",
 					"required": false
 				},
@@ -258,78 +461,117 @@
 				}
 			}
 		},
-		"AddMeetingMembership": {
-			"httpMethod": "POST",
-			"uri": "meetings/{meeting_id}/memberships",
-			"summary": "Add meeting membership",
+		"SearchUserMeetings": {
+			"httpMethod": "GET",
+			"uri": "users/{user_id}/meetings/{id}",
+			"summary": "Search for all meetings related with specific user",
 			"responseModel": "User",
 			"parameters": {
 				"user_id": {
-					"type": "string",
+					"type": "integer",
+					"description": "The user id to associate with the meeting",
+					"location":"uri",
+					"required": true
+				},
+				"id": {
+					"type": "integer",
+					"description": "The meetings id",
+					"location":"uri"
+				}
+			}
+		},
+		"AddaUserToMeeting": {
+			"httpMethod": "POST",
+			"uri": "meetings/{group_id}/memberships",
+			"summary": "Add user to an existing meeting by id",
+			"responseModel": "User",
+			"parameters": {
+				"group_id": {
+					"type": "integer",
+					"description": "The meeting id",
+					"location":"uri",
+					"required": true
+				},
+				"user_id": {
+					"type": "integer",
 					"description": "The user id to associate with the meeting",
 					"location":"json",
 					"required": true
+				}
+			}
+		},
+		"RemoveaUserFromMeeting": {
+			"httpMethod": "DELETE",
+			"uri": "meetings/{group_id}/memberships/{user_id}",
+			"summary": "Remove a user from an existing meeting by id",
+			"responseModel": "User",
+			"parameters": {
+				"group_id": {
+					"type": "integer",
+					"description": "The meeting id",
+					"location":"uri",
+					"required": true
 				},
-				"meeting_id": {
-					"type": "string",
-					"description": "The meetings id",
+				"user_id": {
+					"type": "integer",
+					"description": "The user id to remove from the meeting",
 					"location":"uri",
 					"required": true
 				}
 			}
 		},
-		"AnswerQuestion": {
-			"httpMethod": "POST",
-			"uri": "users/{user_id}/answers",
-			"summary": "Add meeting membership",
+		"GetSessionbyId": {
+			"httpMethod": "GET",
+			"uri": "users/{user_id}/session",
+			"summary": "Retreive user sessions (login information)",
 			"responseModel": "User",
 			"parameters": {
 				"user_id": {
-					"type": "string",
-					"description": "The user id",
+					"type": "integer",
+					"description": "The user id to retreive session information",
 					"location":"uri",
-					"required": true
-				},
-				"question_id": {
-					"type": "string",
-					"description": "The question id",
-					"location":"json",
-					"required": true
-				},
-				"answer": {
-					"type": "string",
-					"description": "The answer",
-					"location":"json",
 					"required": true
 				}
 			}
 		},
-		"UpdateQuestion": {
-			"httpMethod": "POST",
-			"uri": "users/{user_id}/answers/{answer_id}",
-			"summary": "Add meeting membership",
+		"GetSessionbyEmailorExternalID": {
+			"httpMethod": "GET",
+			"uri": "session",
+			"summary": "Retreive user sessions by external id or user email",
 			"responseModel": "User",
 			"parameters": {
-				"user_id": {
+				"external_id": {
 					"type": "string",
-					"description": "The user id",
-					"location":"uri",
+					"description": "The user external id to retreive session information",
+					"location":"json"
+				},
+				"primary_email": {
+					"type": "string",
+					"description": "The user primary mail to retreive session information",
+					"location":"json"
+				}
+			}
+		},
+		"PostSession": {
+			"httpMethod": "POST",
+			"uri": "session",
+			"summary": "Get user authentication credentials by email and password",
+			"responseModel": "User",
+			"parameters": {
+				"primary_email": {
+					"type": "string",
+					"description": "The user email",
+					"location":"json",
 					"required": true
 				},
-				"answer_id": {
+				"password": {
 					"type": "string",
-					"description": "The answer id",
-					"location":"uri",
-					"required": true
-				},
-				"answer": {
-					"type": "string",
-					"description": "The answer",
+					"description": "The user password",
 					"location":"json",
 					"required": true
 				}
 			}
-		}
+		}		
 	},
 	"models": {
 		"BaseResponse": {
