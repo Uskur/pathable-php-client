@@ -131,7 +131,7 @@ elseif($action == 'removeaMeeting') {
 }
 elseif($action == 'searchMeeting') {
     $response = $pathable->SearchMeeting([
-        
+       'with'=>['external_id'=>'65b57c47-b7a6-4cbd-99bf-b9f951b6ebb8']
     ]);
 }
 

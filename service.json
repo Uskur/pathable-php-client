@@ -436,7 +436,7 @@
 				},
 				"with": {
 					"type": "array",
-					"description": "with can be used for all valid user attributes",
+					"description": "with can be used for all valid user attributes, eg. external_id",
 					"location":"json"
 				},
 				"page": {
