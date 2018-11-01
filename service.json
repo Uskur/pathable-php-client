@@ -320,7 +320,7 @@
 				"id": {
 					"type": "string",
 					"description": "The meeting id to removed.",
-					"location":"json",
+					"location":"uri",
 					"required": true
 				}
    
