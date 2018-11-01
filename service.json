@@ -311,7 +311,7 @@
 				}
 			}
 		},
-		"RemoveaMeeting": {
+		"DeleteMeeting": {
 			"httpMethod": "DELETE",
 			"uri": "meetings/{id}",
 			"summary": "Delete existing meeting",
@@ -319,8 +319,8 @@
 			"parameters": {	
 				"id": {
 					"type": "string",
-					"description": "The meeting id to be permanently deleted.",
-					"location":"uri",
+					"description": "The meeting id to removed.",
+					"location":"json",
 					"required": true
 				}
    
@@ -335,8 +335,7 @@
 				"external_id": {
 					"type": "string",
 					"description": "If you are using a unique number to keep track of each session in a system outside of Pathable, you may enter those session numbers in this field. This field is NOT mandatory and may be left blank.",
-					"location":"json",
-					"required": false
+					"location":"json"
 				},
 				"name": {
 					"type": "string",
