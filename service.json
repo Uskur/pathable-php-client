@@ -83,8 +83,8 @@
 				}
 			}
 		},
-		"GetUser": {
-			"httpMethod": "GET",
+		"DeleteUser": {
+			"httpMethod": "DELETE",
 			"uri": "users/{id}",
 			"summary": "Get user",
 			"responseModel": "User",
@@ -97,16 +97,16 @@
 				}
 			}
 		},
-		"GetUser2": {
+		"GetUser": {
 			"httpMethod": "GET",
-			"uri": "users",
+			"uri": "users/{id}",
 			"summary": "Get user",
 			"responseModel": "User",
 			"parameters": {
-				"master_external_id": {
+				"id": {
 					"type": "string",
 					"description": "Id of a user.",
-					"location":"json",
+					"location":"uri",
 					"required": true
 				}
 			}
@@ -122,29 +122,9 @@
 					"description": "will match across the following fields: first_name, last_name, title, bio, organization_name, primary_email, <groups names>, and <ribbon names>",
 					"location":"json"
 				},
-				"with": {
-					"type": "array",
+				"master_external_id": {
+					"type": "string",
 					"description": "with can be used for all valid user attributes",
-					"location":"json"
-				},
-				"page": {
-					"type": "integer",
-					"description": "page number",
-					"location":"json"
-				},
-				"per_page": {
-					"type": "integer",
-					"description": "results per page",
-					"location":"json"
-				},
-				"order": {
-					"type": "string",
-					"description": "field to order by",
-					"location":"json"
-				},
-				"sort_mode": {
-					"type": "string",
-					"description": "asc/desc sort mode",
 					"location":"json"
 				}
 			}
@@ -271,9 +251,9 @@
 				}
 			}
 		},
-		"AssociateUserWithaRibbon": {
+		"AddRibbon": {
 			"httpMethod": "POST",
-			"uri": "users/{user_id}/ribbon",
+			"uri": "users_ribbons",
 			"summary": "Associate user with a ribbons",
 			"responseModel": "User",
 			"parameters": {
@@ -283,17 +263,17 @@
 					"location":"json",
 					"required": true
 				},
-				"ribbons": {
-					"type": "string",
+				"ribbon_id": {
+					"type": "integer",
 					"description": "Id of a ribon.",
 					"location":"json",
 					"required": true
 				}
 			}
 		},
-		"DisassociateUserWithaRibbon": {
+		"RemoveRibbon": {
 			"httpMethod": "DELETE",
-			"uri": "users/{user_id}/ribbons/{ribbon_id}",
+			"uri": "users_ribbons",
 			"summary": "Associate user with a ribbons",
 			"responseModel": "User",
 			"parameters": {
@@ -313,20 +293,14 @@
 		},
 		"GetMeeting": {
 			"httpMethod": "GET",
-			"uri": "meetings",
+			"uri": "meetings/{id}",
 			"summary": "Retrieve existing meeting information",
 			"responseModel": "User",
 			"parameters": {
-				"name": {
-					"type": "string",
-					"description": "The meeting name.",
-					"location":"json",
-					"required": true
-				},
-				"description": {
-					"type": "string",
-					"description": "The meeting description.",
-					"location":"json",
+				"id": {
+					"type": "integer",
+					"description": "The meeting id.",
+					"location":"uri",
 					"required": true
 				}
 			}
@@ -598,6 +572,40 @@
 					"description": "If you have attendees that are already signed up for this session, enter their email addresses here separated by a comma. We'll pre-populate the session on their personal schedule",
 					"location":"json",
 					"required": false
+				}
+			}
+		},
+		"GetMembership": {
+			"httpMethod": "GET",
+			"uri": "meetings/{id}/memberships",
+			"summary": "Retrieve existing meeting information",
+			"responseModel": "User",
+			"parameters": {
+				"id": {
+					"type": "integer",
+					"description": "The meeting id.",
+					"location":"uri",
+					"required": true
+				}
+			}
+		},
+		"DeleteMembership": {
+			"httpMethod": "DELETE",
+			"uri": "meetings/{group_id}/memberships/{id}",
+			"summary": "Retrieve existing meeting information",
+			"responseModel": "User",
+			"parameters": {
+				"id": {
+					"type": "integer",
+					"description": "The meeting id.",
+					"location":"uri",
+					"required": true
+				},
+				"group_id": {
+					"type": "integer",
+					"description": "The meeting id.",
+					"location":"uri",
+					"required": true
 				}
 			}
 		},
