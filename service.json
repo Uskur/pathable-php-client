@@ -74,6 +74,26 @@
 					"description": "Or surname.",
 					"location":"json",
 					"required": true
+				},
+				"primary_email": {
+					"type": "string",
+					"description": "Can include a middle name or initial.",
+					"location":"json",
+					"required": true
+				}
+			}
+		},
+		"DeleteUser": {
+			"httpMethod": "DELETE",
+			"uri": "users/{id}",
+			"summary": "Get user",
+			"responseModel": "User",
+			"parameters": {
+				"id": {
+					"type": "string",
+					"description": "Id of a user.",
+					"location":"uri",
+					"required": true
 				}
 			}
 		},
@@ -102,29 +122,9 @@
 					"description": "will match across the following fields: first_name, last_name, title, bio, organization_name, primary_email, <groups names>, and <ribbon names>",
 					"location":"json"
 				},
-				"with": {
-					"type": "array",
+				"master_external_id": {
+					"type": "string",
 					"description": "with can be used for all valid user attributes",
-					"location":"json"
-				},
-				"page": {
-					"type": "integer",
-					"description": "page number",
-					"location":"json"
-				},
-				"per_page": {
-					"type": "integer",
-					"description": "results per page",
-					"location":"json"
-				},
-				"order": {
-					"type": "string",
-					"description": "field to order by",
-					"location":"json"
-				},
-				"sort_mode": {
-					"type": "string",
-					"description": "asc/desc sort mode",
 					"location":"json"
 				}
 			}
@@ -251,9 +251,9 @@
 				}
 			}
 		},
-		"AssociateUserWithaRibbon": {
+		"AddRibbon": {
 			"httpMethod": "POST",
-			"uri": "users/{user_id}/ribbon",
+			"uri": "users_ribbons",
 			"summary": "Associate user with a ribbons",
 			"responseModel": "User",
 			"parameters": {
@@ -263,17 +263,17 @@
 					"location":"json",
 					"required": true
 				},
-				"ribbons": {
-					"type": "string",
+				"ribbon_id": {
+					"type": "integer",
 					"description": "Id of a ribon.",
 					"location":"json",
 					"required": true
 				}
 			}
 		},
-		"DisassociateUserWithaRibbon": {
+		"RemoveRibbon": {
 			"httpMethod": "DELETE",
-			"uri": "users/{user_id}/ribbons/{ribbon_id}",
+			"uri": "users_ribbons",
 			"summary": "Associate user with a ribbons",
 			"responseModel": "User",
 			"parameters": {
@@ -293,20 +293,14 @@
 		},
 		"GetMeeting": {
 			"httpMethod": "GET",
-			"uri": "meetings",
+			"uri": "meetings/{id}",
 			"summary": "Retrieve existing meeting information",
 			"responseModel": "User",
 			"parameters": {
-				"name": {
-					"type": "string",
-					"description": "The meeting name.",
-					"location":"json",
-					"required": true
-				},
-				"description": {
-					"type": "string",
-					"description": "The meeting description.",
-					"location":"json",
+				"id": {
+					"type": "integer",
+					"description": "The meeting id.",
+					"location":"uri",
 					"required": true
 				}
 			}
@@ -320,8 +314,7 @@
 				"id": {
 					"type": "string",
 					"description": "The meeting id to removed.",
-					"location":"uri",
-					"required": true
+					"location":"uri"
 				}
    
 			}
@@ -476,6 +469,143 @@
 					"type": "integer",
 					"description": "The meetings id",
 					"location":"uri"
+				}
+			}
+		},
+		"EditMeeting": {
+			"httpMethod": "PATCH",
+			"uri": "meetings/{id}",
+			"summary": "Edit existing meeting",
+			"responseModel": "User",
+			"parameters": {	
+				"id": {
+					"type": "string",
+					"description": "The meeting id to removed.",
+					"location":"uri",
+					"required": true
+				},
+				"external_id": {
+					"type": "string",
+					"description": "If you are using a unique number to keep track of each session in a system outside of Pathable, you may enter those session numbers in this field. This field is NOT mandatory and may be left blank.",
+					"location":"json",
+					"required": false
+				},
+				"name": {
+					"type": "string",
+					"description": "Full name of the session.",
+					"location":"json",
+					"required": true
+				},
+				"date": {
+					"type": "string",
+					"description": "The starting time of the session. This information MUST be entered in this format:YYY-MM-DD (example: 2018-11-25)",
+					"location":"json",
+					"required": false
+				},
+				"start_time": {
+					"type": "string",
+					"description": "The starting time of the session. This information MUST be entered in this format:HH:MM AM/PM (example: 1:15 PM) Note the space between the time and the AM/PM designation.",
+					"location":"json",
+					"required": false
+				},
+				"end_time": {
+					"type": "string",
+					"description": "The end time of the session. This information MUST be entered in this format:HH:MM AM/PM (example: 6:15 PM) Note the space between the time and the AM/PM designation.",
+					"location":"json",
+					"required": false
+				},
+				"speaker_emails": {
+					"type": "string",
+					"description": "The email addresses of this session's speakers, separated by spaces. We do not expose your speakers' email addresses in the community, our system simply uses this information to attach the speakers' profile to the sessions at which they're speaking.",
+					"location":"json",
+					"required": false
+				},
+				"location_name": {
+					"type": "string",
+					"description": "The room or name of the location where this session is taking place.",
+					"location":"json",
+					"required": false
+				},
+				"track_name": {
+					"type": "string",
+					"description": "you may enter your sessions' track name here. Tracks are used to group common sessions together. You might have an 'iPhone Development' track that would include all sessions pertaining to iPhone development. Attendees can filter by track to find all sessions that fall within that topic. Tracks are not mandatory and you may leave this cell blank.",
+					"location":"json",
+					"required": false
+				},
+				"keywords": {
+					"type": "string",
+					"description": "Keywords associated with this session. Keywords are much like tags and appear in the 'search' area of the schedule page; they can be used to filter the schedule. This provides an additional layer of labeling and filtering. Keywords are not mandatory and you may leave this cell blank.",
+					"location":"json",
+					"required": false
+				},
+				"blurb": {
+					"type": "string",
+					"description": "An identifier that is unique for that user for the particular event or site",
+					"location":"json",
+					"required": false
+				},
+				"document_list": {
+					"type": "string",
+					"description": "If you have materials that should be uploaded to this session's page and they are hosted online, you may enter the URL of the document(s). The documents will be uploaded to the session and attendees will have access to the materials when visiting this session's page.",
+					"location":"json"
+				},
+				"link_list": {
+					"type": "string",
+					"description": "Any websites that should be linked to on this session's page. Separate each URL with a comma.",
+					"location":"json",
+					"required": false
+				},
+				"mandatory": {
+					"type": "boolean",
+					"description": "Marking true in this column will place this session on every attendee's personal schedule and they will not be able to remove it. true is the only valid entry in this cell; leave it blank for false.",
+					"location":"json",
+					"required": false
+				},
+				"unschedulable": {
+					"type": "boolean",
+					"description": "Marking true in this cell will hide the 'attend' and 'join meeting' buttons on this session, preventing attendees from adding it to their personal schedule. Use this setting for any agenda items you'd like to note in the Full Schedule but wouldn't want an attendee to add to their personal schedule. This is most often used for entries such as, 'Registration Open 8am'",
+					"location":"json",
+					"required": false
+				},
+				"accepted_attendees_emails": {
+					"type": "string",
+					"description": "If you have attendees that are already signed up for this session, enter their email addresses here separated by a comma. We'll pre-populate the session on their personal schedule",
+					"location":"json",
+					"required": false
+				}
+			}
+		},
+		"GetMembership": {
+			"httpMethod": "GET",
+			"uri": "meetings/{id}/memberships",
+			"summary": "Retrieve existing meeting information",
+			"responseModel": "User",
+			"parameters": {
+				"id": {
+					"type": "integer",
+					"description": "The meeting id.",
+					"location":"uri",
+					"required": true
+				}
+			}
+		},
+		"DeleteMembership": {
+			"httpMethod": "DELETE",
+			"uri": "meetings/{group_id}/memberships/{id}",
+			"summary": "Retrieve existing meeting information",
+			"responseModel": "User",
+			"parameters": {
+				"id": {
+					"type": "integer",
+					"description": "The meeting id.",
+					"location":"uri",
+					"required": true
+				},
+				"group_id": {
+					"type": "integer",
+					"description": "The meeting id.",
+					"location":"uri",
+					"required": true
 				}
 			}
 		},

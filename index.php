@@ -2,24 +2,28 @@
 	<h3>User</h3>
 	
 	<li><a href="?action=create">Create a User (Complete)</a></li>
+	<li><a href="?action=delete">Delete a User (Complete)</a></li>
 	<li><a href="?action=get">Get a User(Complete)</a></li>
 	<li><a href="?action=search">Search Users (Complete)</a></li>
 	<li><a href="?action=updateaUser">Update a User (Complete)</a></li>
 	<li><a href="?action=answerQuestion">Answer Question (Complete)</a></li>
 	<li><a href="?action=updateQuestion">Update Answere(Complete)</a></li>
-	<li><a href="?action=associateUserWithaRibbon">Associate Ribbon (Error)</a></li>
-	<li><a href="?action=disassociateUserWithaRibbon">Disassociate Ribbon (Error)</a></li>
+	<li><a href="?action=addRibbon">Add Ribbon (Complete)</a></li>
+	<li><a href="?action=removeRibbon">Remove Ribbon (Complete)</a></li>
 	
 	<h3>Meetings</h3>
 	
 	<li><a href="?action=getMeeting">Get Meeting(Complete)</a></li>
-	<li><a href="?action=removeaMeeting">Remove a Meeting(Works with error)</a></li>
+	<li><a href="?action=deleteMeeting">Delete a Meeting(Works with error)</a></li>
 	<li><a href="?action=createMeeting">Create Meeting(Complete)</a></li>
 	<li><a href="?action=searchMeeting">Search Meeting(Complete)</a></li>
 	<li><a href="?action=searchUserMeetings">Search User Meetings(Complete)</a></li>
+	<li><a href="?action=editMeeting">Edit Meeting(Non existed in pathable???)</a></li>
 	
 	<h3>Memberships</h3>
 	
+	<li><a href="?action=getMembership">Get Membership (Complete)</a></li>
+	<li><a href="?action=deleteMembership">Delete Membership (Complete)</a></li>
 	<li><a href="?action=addaUserToMeeting">Add a User to a Meeting (Complete (click options not added))</a></li>
 	<li><a href="?action=removeaUserFromMeeting">Remove a User From a Meeting (Error)</a></li>
 	
@@ -50,24 +54,39 @@ $action = isset($_GET['action'])?$_GET['action']:null;
 
 if($action == 'create') {
     $response = $pathable->CreateUser([
-        'first_name' => 'Johny',
-        'last_name' => 'Doe',
+        'first_name' =>'first_name5',
+        'last_name' => 'last_name5',
+        'primary_email' => 'asd5@hotmail.com',
+        'credentials' =>'title',
+        'event_external_id' => 'id5',
+        'master_external_id' => 'id5',
         'allowed_mails' => '',
         'allowed_sms' => '',
-        'bio' => 'asd',
-        'credentials' => 'asd',
+        'bio' => '',
         'enabled_for_email' => false,
         'enabled_for_sms' => false,
-        'evaluator_id' => '111222',
-        'event_external_id' => '131313', 
+        'evaluator_id' => ''
     ]);
 }
+
+elseif($action == 'delete') {
+    $response = $pathable->DeleteUser([
+        'id'=>'1464030'
+    ]);
+}
+
 elseif($action == 'get') {
-    $response = $pathable->GetUser(['id'=>'1393452']);
+    $response = $pathable->GetUser([
+        'id'=>'1463016'
+    ]);
 }
 
 elseif($action == 'search') {
-    $response = $pathable->SearchUser(['query'=>'John']);
+    $response = $pathable->SearchUser([
+        //'master_external_id' => '41b5f812-12b4-41ec-a8c8-0dbdf2469d01'
+        'query' => 'kantarci.oguzhan@hotmail.com'
+    ]);
+
 }
 
 else if($action == 'updateaUser') {
@@ -103,17 +122,17 @@ elseif($action == 'updateQuestion') {
     ]);
 }
 
-elseif($action == 'associateUserWithaRibbon') {
-    $response = $pathable->AssociateUserWithaRibbon([
-        'user_id' => 1393452,
-        'ribbons' => '20594'
+elseif($action == 'addRibbon') {
+    $response = $pathable->AddRibbon([
+        'user_id' => 1463016,
+        'ribbon_id' => 20593
     ]);
 }
 
-elseif($action == 'disassociateUserWithaRibbon') {
-    $response = $pathable->DisassociateUserWithaRibbon([
-        'user_id' => 1426601,
-        'ribbon_id' => 20004
+elseif($action == 'removeRibbon') {
+    $response = $pathable->RemoveRibbon([
+        'user_id' => 1463016,
+        'ribbon_id' => 20593
     ]);
 }
 
@@ -122,21 +141,23 @@ elseif($action == 'disassociateUserWithaRibbon') {
 
 elseif($action == 'getMeeting') {
     $response = $pathable->GetMeeting([
-        'name' => 'Test',
-        'description' => 'Event Horizon'
+        'id' => 924904
     ]);
 }
-elseif($action == 'removeaMeeting') {
-    $response = $pathable->removeaMeeting(['id' => '919301']);
+elseif($action == 'deleteMeeting') {
+    $response = $pathable->DeleteMeeting([
+        'id' => '923468'
+    ]);
 }
 elseif($action == 'searchMeeting') {
     $response = $pathable->SearchMeeting([
-       'with'=>['external_id'=>'65b57c47-b7a6-4cbd-99bf-b9f951b6ebb8']
+       'with'=>['external_id'=>'8d5d3248-edea-46f3-b737-0627efadca17']
     ]);
 }
 
 elseif($action == 'createMeeting') {
     $response = $pathable->CreateMeeting([
+        'external_id' => 'ogi',
         'name' => 'Sample meeting 2',
         'date' => '2019-04-08',
         'start_time' => '9:15 AM',
@@ -146,7 +167,7 @@ elseif($action == 'createMeeting') {
 
 elseif($action == 'addMeetingMembership') {
     $response = $pathable->AddMeetingMembership([
-        'meeting_id' => '897181',
+        'meeting_id' => '897181'
     ]);
 }
 
@@ -156,12 +177,37 @@ elseif($action == 'searchUserMeetings') {
     ]);
 }
 
+elseif($action == 'editMeeting') {
+    $response = $pathable->EditMeeting([
+        'id' => '897181',
+        'external_id' => 'ogi',
+        'name' => 'Edit Meeting Test',
+        'date' => '2019-04-08',
+        'start_time' => '9:15 AM',
+        'end_time' => '3:45 PM'
+        
+    ]);
+}
+
 //*****MEMBERSHIPS*****
+
+elseif($action == 'getMembership') {
+    $response = $pathable->GetMembership([
+        'id' => 1464030
+    ]);
+}
+
+elseif($action == 'deleteMembership') {
+    $response = $pathable->DeleteMembership([
+        'group_id' => 926304,
+        'id' => 19410310
+    ]);
+}
 
 elseif($action == 'addaUserToMeeting') {
     $response = $pathable->AddaUserToMeeting([
-        'group_id' => 915909,
-        'user_id' => 1393452
+        'group_id' => 926304,
+        'user_id' => 1463016
     ]);
 }
 
