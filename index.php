@@ -30,7 +30,7 @@
 	<h3>Sessions</h3>
 	
 	<li><a href="?action=getSessionbyId">Get Session by User ID (Complete)</a></li>
-	<li><a href="?action=getSessionbyEmailorExternalID">Get Session by Email or External ID(Complete)</a></li>
+	<li><a href="?action=getSessionbyEmail">Get Session by Email or External ID(Complete)</a></li>
 	<li><a href="?action=postSession">Post Session(?)</a></li>
 	
 </ul>
@@ -71,7 +71,7 @@ if($action == 'create') {
 
 elseif($action == 'delete') {
     $response = $pathable->DeleteUser([
-        'id'=>'1464030'
+        'id'=>'1464442'
     ]);
 }
 
@@ -151,7 +151,7 @@ elseif($action == 'deleteMeeting') {
 }
 elseif($action == 'searchMeeting') {
     $response = $pathable->SearchMeeting([
-       'with'=>['external_id'=>'8d5d3248-edea-46f3-b737-0627efadca17']
+       'with'=>['external_id'=>'81059657-9ba1-43b4-9dfd-3cf1adc1f92a']
     ]);
 }
 
@@ -193,7 +193,7 @@ elseif($action == 'editMeeting') {
 
 elseif($action == 'getMembership') {
     $response = $pathable->GetMembership([
-        'id' => 1464030
+        'id' => 926451
     ]);
 }
 
@@ -222,13 +222,13 @@ elseif($action == 'removeaUserFromMeeting') {
 
 elseif($action == 'getSessionbyId') {
     $response = $pathable->GetSessionbyId([
-        'user_id' => 1393452
+        'user_id' => 1464443
     ]);
 }
 
-elseif($action == 'getSessionbyEmailorExternalID') {
-    $response = $pathable->GetSessionbyEmailorExternalID([
-        'primary_email' => 'johnybgoode@chukb.com'
+elseif($action == 'getSessionbyEmail') {
+    $response = $pathable->GetSessionbyEmail([
+        'primary_email' => 'kantarci.oguzhan@hotmail.com'
     ]);
 }
 

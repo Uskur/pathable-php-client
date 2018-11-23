@@ -87,7 +87,6 @@
 			"httpMethod": "DELETE",
 			"uri": "users/{id}",
 			"summary": "Get user",
-			"responseModel": "User",
 			"parameters": {
 				"id": {
 					"type": "string",
@@ -663,7 +662,7 @@
 				}
 			}
 		},
-		"GetSessionbyEmailorExternalID": {
+		"GetSessionbyEmail": {
 			"httpMethod": "GET",
 			"uri": "session",
 			"summary": "Retreive user sessions by external id or user email",
