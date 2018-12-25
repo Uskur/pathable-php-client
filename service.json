@@ -87,7 +87,6 @@
 			"httpMethod": "DELETE",
 			"uri": "users/{id}",
 			"summary": "Get user",
-			"responseModel": "User",
 			"parameters": {
 				"id": {
 					"type": "string",
@@ -129,7 +128,7 @@
 				}
 			}
 		},
-		"UpdateaUser": {
+		"UpdateUser": {
 			"httpMethod": "POST",
 			"uri": "users/{user_id}",
 			"summary": "Updates existing user",
@@ -195,8 +194,12 @@
 					"type": "string",
 					"description": "surname.",
 					"location":"json"
+				},
+				"email": {
+					"type": "string",
+					"description": "email.",
+					"location":"json"
 				}
-				
 			}
 		},
 		"AnswerQuestion": {
@@ -231,6 +234,12 @@
 			"summary": "Add meeting membership",
 			"responseModel": "User",
 			"parameters": {
+				"question_id": {
+					"type": "string",
+					"description": "The user id",
+					"location":"uri",
+					"required": true
+				},
 				"user_id": {
 					"type": "string",
 					"description": "The user id",
@@ -473,7 +482,7 @@
 			}
 		},
 		"EditMeeting": {
-			"httpMethod": "PATCH",
+			"httpMethod": "PUT",
 			"uri": "meetings/{id}",
 			"summary": "Edit existing meeting",
 			"responseModel": "User",
@@ -495,6 +504,12 @@
 					"description": "Full name of the session.",
 					"location":"json",
 					"required": true
+				},
+				"description": {
+					"type": "string",
+					"description": "The starting time of the session. This information MUST be entered in this format:YYY-MM-DD (example: 2018-11-25)",
+					"location":"json",
+					"required": false
 				},
 				"date": {
 					"type": "string",
@@ -663,7 +678,7 @@
 				}
 			}
 		},
-		"GetSessionbyEmailorExternalID": {
+		"GetSessionbyEmail": {
 			"httpMethod": "GET",
 			"uri": "session",
 			"summary": "Retreive user sessions by external id or user email",
