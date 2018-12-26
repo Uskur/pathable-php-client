@@ -32,7 +32,7 @@
 					"type": "string",
 					"description": "Professional credentials, e.g. PhD or LMP.",
 					"location":"json",
-					"required": true
+					"required": false
 				},
 				"enabled_for_email": {
 					"type": "boolean",
