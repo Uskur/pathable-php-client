@@ -71,20 +71,21 @@ if($action == 'create') {
 
 elseif($action == 'delete') {
     $response = $pathable->DeleteUser([
-        'id'=>'1464442'
+        'id'=>'1464029'
     ]);
 }
 
 elseif($action == 'get') {
     $response = $pathable->GetUser([
-        'id'=>'1463016'
+        'id'=>'1371117'
     ]);
 }
 
 elseif($action == 'search') {
     $response = $pathable->SearchUser([
         //'master_external_id' => '41b5f812-12b4-41ec-a8c8-0dbdf2469d01'
-        'query' => 'kantarci.oguzhan@hotmail.com'
+        //'query' => 'burak@uskur.com'
+        'query' => 'kantarci.oguzhan@.com'
     ]);
 
 }
@@ -151,7 +152,7 @@ elseif($action == 'deleteMeeting') {
 }
 elseif($action == 'searchMeeting') {
     $response = $pathable->SearchMeeting([
-       'with'=>['external_id'=>'81059657-9ba1-43b4-9dfd-3cf1adc1f92a']
+       'with'=>['external_id'=>'ef0b7047-f5b1-4e04-9f75-a27d2be71db8']
     ]);
 }
 
@@ -222,7 +223,7 @@ elseif($action == 'removeaUserFromMeeting') {
 
 elseif($action == 'getSessionbyId') {
     $response = $pathable->GetSessionbyId([
-        'user_id' => 1464443
+        'user_id' => 1371117
     ]);
 }
 
