@@ -180,11 +180,12 @@ elseif($action == 'searchUserMeetings') {
 
 elseif($action == 'editMeeting') {
     $response = $pathable->EditMeeting([
-        'id' => '928492',
-        'name' => 'Edit Meeting Test'
-//         'date' => '2019-04-08',
-//         'start_time' => '9:15 AM',
-//         'end_time' => '3:45 PM'
+        'id' => '897181',
+        'external_id' => 'ogi',
+        'name' => 'Edit Meeting Test',
+        'date' => '2019-04-08',
+        'start_time' => '9:15 AM',
+        'end_time' => '3:45 PM'
         
     ]);
 }
