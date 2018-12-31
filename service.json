@@ -80,6 +80,11 @@
 					"description": "Can include a middle name or initial.",
 					"location":"json",
 					"required": true
+				},
+				"organization_name": {
+					"type": "string",
+					"description": "Organization of the user.",
+					"location":"json"
 				}
 			}
 		},
@@ -124,6 +129,11 @@
 				"master_external_id": {
 					"type": "string",
 					"description": "with can be used for all valid user attributes",
+					"location":"json"
+				},
+				"per_page": {
+					"type": "integer",
+					"description": "results per page",
 					"location":"json"
 				}
 			}
@@ -198,6 +208,11 @@
 				"email": {
 					"type": "string",
 					"description": "email.",
+					"location":"json"
+				},
+				"organization_name": {
+					"type": "string",
+					"description": "Organization of the user.",
 					"location":"json"
 				}
 			}
@@ -608,7 +623,6 @@
 			"httpMethod": "DELETE",
 			"uri": "meetings/{group_id}/memberships/{id}",
 			"summary": "Retrieve existing meeting information",
-			"responseModel": "User",
 			"parameters": {
 				"id": {
 					"type": "integer",
