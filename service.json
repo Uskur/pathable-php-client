@@ -85,6 +85,12 @@
 					"type": "string",
 					"description": "Organization of the user.",
 					"location":"json"
+				},
+				"photo_deferred_url": {
+					"type": "string",
+					"description": "User avatar URL.",
+					"location":"json",
+					"required": false
 				}
 			}
 		},
@@ -214,6 +220,12 @@
 					"type": "string",
 					"description": "Organization of the user.",
 					"location":"json"
+				},
+				"photo_deferred_url": {
+					"type": "string",
+					"description": "User avatar URL.",
+					"location":"json",
+					"required": false
 				}
 			}
 		},
