@@ -65,7 +65,8 @@ if($action == 'create') {
         'bio' => '',
         'enabled_for_email' => false,
         'enabled_for_sms' => false,
-        'evaluator_id' => ''
+        'evaluator_id' => '',
+        'photo_referred_url' => ''
     ]);
 }
 
@@ -102,7 +103,8 @@ else if($action == 'updateaUser') {
         'enabled_for_email' => false,
         'enabled_for_sms' => false,
         'evaluator_id' => '111222',
-        'event_external_id' => '131313'
+        'event_external_id' => '131313',
+        'photo_referred_url' => ''
     ]);
 }
 
