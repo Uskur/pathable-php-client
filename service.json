@@ -141,6 +141,11 @@
 					"type": "integer",
 					"description": "results per page",
 					"location":"json"
+				},
+				"with": {
+					"type": "array",
+					"description": "search string",
+					"location":"json"
 				}
 			}
 		},

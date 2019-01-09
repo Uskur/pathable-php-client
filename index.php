@@ -86,7 +86,7 @@ elseif($action == 'search') {
     $response = $pathable->SearchUser([
         //'master_external_id' => '41b5f812-12b4-41ec-a8c8-0dbdf2469d01'
         //'query' => 'burak@uskur.com'
-        'query' => 'kantarci.oguzhan@.com'
+        'with' => ['kantarci.oguzhan@.com']
     ]);
 
 }
@@ -231,7 +231,7 @@ elseif($action == 'getSessionbyId') {
 
 elseif($action == 'getSessionbyEmail') {
     $response = $pathable->GetSessionbyEmail([
-        'primary_email' => 'kantarci.oguzhan@hotmail.com'
+        'primary_email' => 'burak@uskur.com.tr'
     ]);
 }
 
