@@ -91,7 +91,20 @@
 					"description": "User avatar URL.",
 					"location":"json",
 					"required": false
+				},
+				"address": {
+					"type": "string",
+					"description": "User address.",
+					"location":"json",
+					"required": false
+				},
+				"title": {
+					"type": "string",
+					"description": "User title.",
+					"location":"json",
+					"required": false
 				}
+				
 			}
 		},
 		"DeleteUser": {
@@ -229,6 +242,18 @@
 				"photo_deferred_url": {
 					"type": "string",
 					"description": "User avatar URL.",
+					"location":"json",
+					"required": false
+				},
+				"address": {
+					"type": "string",
+					"description": "User address.",
+					"location":"json",
+					"required": false
+				},
+				"title": {
+					"type": "string",
+					"description": "User title.",
 					"location":"json",
 					"required": false
 				}

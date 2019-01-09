@@ -54,19 +54,21 @@ $action = isset($_GET['action'])?$_GET['action']:null;
 
 if($action == 'create') {
     $response = $pathable->CreateUser([
-        'first_name' =>'first_name5',
-        'last_name' => 'last_name5',
-        'primary_email' => 'asd5@hotmail.com',
-        'credentials' =>'title',
-        'event_external_id' => 'id5',
-        'master_external_id' => 'id5',
+        'user_id' => '1393452',
+        'primary_email' => 'username@test.com',
+        'first_name' => 'TestingUserName',
+        'last_name' => 'TestingUserSurname',
         'allowed_mails' => '',
         'allowed_sms' => '',
         'bio' => '',
+        'credentials' => 'designation',
         'enabled_for_email' => false,
         'enabled_for_sms' => false,
-        'evaluator_id' => '',
-        'photo_referred_url' => ''
+        'evaluator_id' => '111222',
+        'event_external_id' => '131313',
+        'photo_referred_url' => '',
+        'address' => 'asd123',
+        'title' => 'asd321'
     ]);
 }
 
@@ -94,17 +96,20 @@ elseif($action == 'search') {
 else if($action == 'updateaUser') {
     $response = $pathable->UpdateaUser([
         'user_id' => '1393452',
-        'first_name' => 'Johny(update)',
-        'last_name' => 'Doe(update2)',
+        'primary_email' => 'username2@test.com',
+        'first_name' => 'TestingUserName',
+        'last_name' => 'TestingUserSurname',
         'allowed_mails' => '',
         'allowed_sms' => '',
-        'bio' => 'asd',
-        'credentials' => 'credentials',
+        'bio' => '',
+        'credentials' => 'designation',
         'enabled_for_email' => false,
         'enabled_for_sms' => false,
         'evaluator_id' => '111222',
         'event_external_id' => '131313',
-        'photo_referred_url' => ''
+        'photo_referred_url' => '',
+        'address' => 'asd123',
+        'title' => 'asd321'
     ]);
 }
 
