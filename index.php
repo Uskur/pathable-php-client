@@ -1,6 +1,6 @@
 <ul>
 	<h3>User</h3>
-	
+
 	<li><a href="?action=create">Create a User (Complete)</a></li>
 	<li><a href="?action=delete">Delete a User (Complete)</a></li>
 	<li><a href="?action=get">Get a User(Complete)</a></li>
@@ -10,29 +10,33 @@
 	<li><a href="?action=updateQuestion">Update Answere(Complete)</a></li>
 	<li><a href="?action=addRibbon">Add Ribbon (Complete)</a></li>
 	<li><a href="?action=removeRibbon">Remove Ribbon (Complete)</a></li>
-	
+
 	<h3>Meetings</h3>
-	
+
 	<li><a href="?action=getMeeting">Get Meeting(Complete)</a></li>
 	<li><a href="?action=deleteMeeting">Delete a Meeting(Works with error)</a></li>
 	<li><a href="?action=createMeeting">Create Meeting(Complete)</a></li>
 	<li><a href="?action=searchMeeting">Search Meeting(Complete)</a></li>
 	<li><a href="?action=searchUserMeetings">Search User Meetings(Complete)</a></li>
-	<li><a href="?action=editMeeting">Edit Meeting(Non existed in pathable???)</a></li>
-	
+	<li><a href="?action=editMeeting">Edit Meeting(Non existed in
+			pathable???)</a></li>
+
 	<h3>Memberships</h3>
-	
+
 	<li><a href="?action=getMembership">Get Membership (Complete)</a></li>
 	<li><a href="?action=deleteMembership">Delete Membership (Complete)</a></li>
-	<li><a href="?action=addaUserToMeeting">Add a User to a Meeting (Complete (click options not added))</a></li>
-	<li><a href="?action=removeaUserFromMeeting">Remove a User From a Meeting (Error)</a></li>
-	
+	<li><a href="?action=addaUserToMeeting">Add a User to a Meeting
+			(Complete (click options not added))</a></li>
+	<li><a href="?action=removeaUserFromMeeting">Remove a User From a
+			Meeting (Error)</a></li>
+
 	<h3>Sessions</h3>
-	
+
 	<li><a href="?action=getSessionbyId">Get Session by User ID (Complete)</a></li>
-	<li><a href="?action=getSessionbyEmail">Get Session by Email or External ID(Complete)</a></li>
+	<li><a href="?action=getSessionbyEmail">Get Session by Email or
+			External ID(Complete)</a></li>
 	<li><a href="?action=postSession">Post Session(?)</a></li>
-	
+
 </ul>
 <pre>
 <?php
@@ -48,11 +52,11 @@ $pathable = PathableClient::create([
     'auth_token' => 'vuapLuQisszdVgaeqbhy'
 ]);
 
-$action = isset($_GET['action'])?$_GET['action']:null;
+$action = isset($_GET['action']) ? $_GET['action'] : null;
 
-//*****USER*****
+// *****USER*****
 
-if($action == 'create') {
+if ($action == 'create') {
     $response = $pathable->CreateUser([
         'user_id' => '1393452',
         'primary_email' => 'username@test.com',
@@ -70,30 +74,27 @@ if($action == 'create') {
         'address' => 'asd123',
         'title' => 'asd321'
     ]);
-}
-
-elseif($action == 'delete') {
+} 
+elseif ($action == 'delete') {
     $response = $pathable->DeleteUser([
-        'id'=>'1464029'
+        'id' => '1464029'
     ]);
-}
-
-elseif($action == 'get') {
+} 
+elseif ($action == 'get') {
     $response = $pathable->GetUser([
-        'id'=>'1371117'
+        'id' => '1371117'
     ]);
-}
-
-elseif($action == 'search') {
+} 
+elseif ($action == 'search') {
     $response = $pathable->SearchUser([
-        //'master_external_id' => '41b5f812-12b4-41ec-a8c8-0dbdf2469d01'
-        //'query' => 'burak@uskur.com'
-        'with' => ['kantarci.oguzhan@.com']
+        // 'master_external_id' => '41b5f812-12b4-41ec-a8c8-0dbdf2469d01'
+        // 'query' => 'burak@uskur.com'
+        'with' => [
+            'emails.email' => 'kantarci.oguzhan@hotmail.com'
+        ]
     ]);
-
-}
-
-else if($action == 'updateaUser') {
+} 
+else if ($action == 'updateaUser') {
     $response = $pathable->UpdateaUser([
         'user_id' => '1393452',
         'primary_email' => 'username2@test.com',
@@ -111,59 +112,51 @@ else if($action == 'updateaUser') {
         'address' => 'asd123',
         'title' => 'asd321'
     ]);
-}
-
-elseif($action == 'answerQuestion') {
+} 
+elseif ($action == 'answerQuestion') {
     $response = $pathable->AnswerQuestion([
         'question_id' => '4937',
         'user_id' => '1393452',
         'answer' => 'Canada, United States'
     ]);
-}
-
-elseif($action == 'updateQuestion') {
+} 
+elseif ($action == 'updateQuestion') {
     $response = $pathable->UpdateQuestion([
         'question_id' => '4938',
         'answer_id' => '1596727',
         'user_id' => '1393452',
         'answer' => 'Canada, United States, test'
     ]);
-}
-
-elseif($action == 'addRibbon') {
+} 
+elseif ($action == 'addRibbon') {
     $response = $pathable->AddRibbon([
         'user_id' => 1463016,
         'ribbon_id' => 20593
     ]);
-}
-
-elseif($action == 'removeRibbon') {
+} 
+elseif ($action == 'removeRibbon') {
     $response = $pathable->RemoveRibbon([
         'user_id' => 1463016,
         'ribbon_id' => 20593
     ]);
-}
+} // *****MEETING*****
 
-
-//*****MEETING*****
-
-elseif($action == 'getMeeting') {
+elseif ($action == 'getMeeting') {
     $response = $pathable->GetMeeting([
         'id' => 924904
     ]);
-}
-elseif($action == 'deleteMeeting') {
+} elseif ($action == 'deleteMeeting') {
     $response = $pathable->DeleteMeeting([
         'id' => '923468'
     ]);
-}
-elseif($action == 'searchMeeting') {
+} elseif ($action == 'searchMeeting') {
     $response = $pathable->SearchMeeting([
-       'with'=>['external_id'=>'ef0b7047-f5b1-4e04-9f75-a27d2be71db8']
+        'with' => [
+            'external_id' => 'ef0b7047-f5b1-4e04-9f75-a27d2be71db8'
+        ]
     ]);
-}
-
-elseif($action == 'createMeeting') {
+} 
+elseif ($action == 'createMeeting') {
     $response = $pathable->CreateMeeting([
         'external_id' => 'ogi',
         'name' => 'Sample meeting 2',
@@ -171,21 +164,18 @@ elseif($action == 'createMeeting') {
         'start_time' => '9:15 AM',
         'end_time' => '3:45 PM'
     ]);
-}
-
-elseif($action == 'addMeetingMembership') {
+} 
+elseif ($action == 'addMeetingMembership') {
     $response = $pathable->AddMeetingMembership([
         'meeting_id' => '897181'
     ]);
-}
-
-elseif($action == 'searchUserMeetings') {
+} 
+elseif ($action == 'searchUserMeetings') {
     $response = $pathable->SearchUserMeetings([
         'user_id' => 1371117
     ]);
-}
-
-elseif($action == 'editMeeting') {
+} 
+elseif ($action == 'editMeeting') {
     $response = $pathable->EditMeeting([
         'id' => '897181',
         'external_id' => 'ogi',
@@ -193,54 +183,44 @@ elseif($action == 'editMeeting') {
         'date' => '2019-04-08',
         'start_time' => '9:15 AM',
         'end_time' => '3:45 PM'
-        
     ]);
-}
+} // *****MEMBERSHIPS*****
 
-//*****MEMBERSHIPS*****
-
-elseif($action == 'getMembership') {
+elseif ($action == 'getMembership') {
     $response = $pathable->GetMembership([
         'id' => 926451
     ]);
-}
-
-elseif($action == 'deleteMembership') {
+} 
+elseif ($action == 'deleteMembership') {
     $response = $pathable->DeleteMembership([
         'group_id' => 926304,
         'id' => 19410310
     ]);
-}
-
-elseif($action == 'addaUserToMeeting') {
+} 
+elseif ($action == 'addaUserToMeeting') {
     $response = $pathable->AddaUserToMeeting([
         'group_id' => 926304,
         'user_id' => 1463016
     ]);
-}
-
-elseif($action == 'removeaUserFromMeeting') {
+} 
+elseif ($action == 'removeaUserFromMeeting') {
     $response = $pathable->RemoveaUserFromMeeting([
         'group_id' => 915909,
         'user_id' => 1393452
     ]);
-}
+} // *****SESSIONS*****
 
-//*****SESSIONS*****
-
-elseif($action == 'getSessionbyId') {
+elseif ($action == 'getSessionbyId') {
     $response = $pathable->GetSessionbyId([
         'user_id' => 1371117
     ]);
-}
-
-elseif($action == 'getSessionbyEmail') {
+} 
+elseif ($action == 'getSessionbyEmail') {
     $response = $pathable->GetSessionbyEmail([
         'primary_email' => 'burak@uskur.com.tr'
     ]);
-}
-
-elseif($action == 'postSession') {
+} 
+elseif ($action == 'postSession') {
     $response = $pathable->PostSession([
         'primary_email' => 'johnybgoode@chukb.com',
         'password' => '654321'
