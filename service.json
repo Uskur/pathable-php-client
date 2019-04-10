@@ -11,7 +11,7 @@
 			"responseModel": "User",
 			"parameters": {
 				"allowed_mails": {
-					"type": "string",
+					"type": "array",
 					"description": "Specify which types of mail the user can receive. Valid options are: reset_password, custom, private_notices, public_notices, daily_update, and system. If set to an empty array, no mail will be sent. reset_password, custom, private_notices, daily_update",
 					"location": "json",
 					"required": true
@@ -174,7 +174,7 @@
 					"required": true
 				},
 				"allowed_mails": {
-					"type": "string",
+					"type": "array",
 					"description": "Specify which types of mail the user can receive. Valid options are: reset_password, custom, private_notices, public_notices, daily_update, and system. If set to an empty array, no mail will be sent. reset_password, custom, private_notices, daily_update",
 					"location": "json"
 				},
@@ -805,7 +805,7 @@
 			"extends": "BaseResponse",
 			"properties": {
 				"allowed_mails": {
-					"type": "string",
+					"type": "array",
 					"description": "Specify which types of mail the user can receive. Valid options are: reset_password, custom, private_notices, public_notices, daily_update, and system. If set to an empty array, no mail will be sent. reset_password, custom, private_notices, daily_update"
 				},
 				"allowed_sms": {
